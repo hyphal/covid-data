@@ -43,6 +43,7 @@ async function download (r, num) {
 
 async function downloadAll () {
   const regionMap = {}
+  console.log(`[${timestampISO}]`)
   await Promise.all(URLS.map(r => {
     const num = (regionMap[r.region] || 0) + 1
     regionMap[r.region] = num
