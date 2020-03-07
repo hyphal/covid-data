@@ -1,0 +1,24 @@
+{
+  "name": "covid-data",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyphal/covid-data.git"
+  },
+  "author": "Josh Harvey <josh@lamassu.is> (https://lamassu.is/)",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/hyphal/covid-data/issues"
+  },
+  "homepage": "https://github.com/hyphal/covid-data#readme",
+  "dependencies": {
+    "got": "^10.6.0",
+    "tinytime": "^0.2.6",
+    "x-ray": "^2.3.4"
+  }
+}
