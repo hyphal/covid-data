@@ -22,8 +22,10 @@ const URLS = [
   { region: 'hk', url: 'https://chp-dashboard.geodata.gov.hk/covid-19/en.html' },
   { region: 'us', url: 'https://edition.cnn.com/2020/03/03/health/us-coronavirus-cases-state-by-state/index.html' },
   { region: 'us', url: 'https://www.cdc.gov/coronavirus/2019-ncov/cases-in-us.html#2019coronavirus-summary' },
+  { region: 'us', url: 'https://raw.githubusercontent.com/adamevers/us-covid19/master/data/all_states.json', suffix: 'json' },
   { region: 'bno', url: 'https://bnonews.com/index.php/2020/02/the-latest-coronavirus-cases/' },
-  { region: 'kr', url: 'http://ncov.mohw.go.kr/bdBoardList_Real.do?brdId=1&brdGubun=11&ncvContSeq=&contSeq=&board_id=&gubun=' }
+  { region: 'kr', url: 'http://ncov.mohw.go.kr/bdBoardList_Real.do?brdId=1&brdGubun=11&ncvContSeq=&contSeq=&board_id=&gubun=' },
+  { region: 'ca', url: 'https://www.canada.ca/en/public-health/services/diseases/2019-novel-coronavirus-infection.html' }
 ]
 
 const timestampISO = new Date().toISOString()
@@ -41,10 +43,11 @@ async function download (r, num) {
   )
 }
 
-async function downloadAll () {
+async function downloadAll (region) {
   const regionMap = {}
   console.log(`[${timestampISO}]`)
   await Promise.all(URLS.map(r => {
+    if (region && r.region !== region) return
     const num = (regionMap[r.region] || 0) + 1
     regionMap[r.region] = num
     download(r, num).catch(e => {
@@ -54,4 +57,5 @@ async function downloadAll () {
   }))
 }
 
-downloadAll()
+const region = process.argv[2]
+downloadAll(region)
